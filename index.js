@@ -27,8 +27,8 @@ app.use(express.urlencoded({ limit: "10mb" }));
 app.use(express.json({ limit: "10mb" }));
 app.use(cors({
     credentials: true,
-    origin: "http://192.168.0.106:3000",
-    optionsSuccessStatus: 205
+    origin: true,
+    optionsSuccessStatus: 204
 }));
 app.use(cookieParser());
 connect();
