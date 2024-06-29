@@ -1,4 +1,5 @@
 let Users = require("../models/Users");
+let Images = require("../models/Images");
 let jwt = require('jsonwebtoken');
 require("dotenv").config();
 
@@ -14,8 +15,9 @@ let authenticating = async (req, res) => {
                     let { username } = payload;
                     console.log(username);
                     let user = await Users.findOne({ username });
+                    let findImages = await Images.find({ "user.username": username });
                     if (user) {
-                        let sendUser = { username, pfp: user.pfp, bio: user.bio, notifications: user.notifications };
+                        let sendUser = { username, pfp: user.pfp, bio: user.bio, posts: findImages, followings: user.followings };
                         console.log("User authenticated");
                         res.json({ success: true, sendUser, message: "User authenticated" });
                     } else {

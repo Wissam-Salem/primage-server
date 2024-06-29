@@ -4,12 +4,15 @@ let Users = require("../../models/Users");
 let addImageController = async (req, res) => {
     try {
         let { url, tags } = req.body;
-        let tagsArray = tags.split(" ");
         let { user } = res.locals;
-        if ((url === null || tags === null) || (url === "" || tags === "")) {
+        if ((!url || !tags) || (url === "")) {
             res.json({ success: false, message: "Please fill all the fields !" });
             console.log("Please fill all the fields !");
         } else {
+            let rawTags = tags.split(",");
+            let tagsArray = rawTags.map((tag) => {
+                return tag.trim();
+            })
             let { username, pfp } = user;
             console.log(username, pfp);
             let image = new Images({

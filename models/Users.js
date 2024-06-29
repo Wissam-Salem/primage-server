@@ -28,20 +28,11 @@ const userSchema = new mongoose.Schema({
     favorates: {
         type: [String],
     },
-    notifications: {
-        one: {
-            type: Boolean,
-            default: false
-        },
-        two: {
-            type: Boolean,
-            default: false
-        },
-        three: {
-            type: Boolean,
-            default: false
-        }
-
+    followers: {
+        type: [String]
+    },
+    followings: {
+        type: [String]
     }
 })
 const Users = mongoose.model("user", userSchema);

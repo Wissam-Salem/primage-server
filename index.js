@@ -21,7 +21,11 @@ let getImages = require("./routes/imagesRoutes/getImages");
 let changePfp = require("./routes/userRoutes/changePfp");
 let addToFavorate = require("./routes/userRoutes/addToFavorate");
 let getFavorateImages = require("./routes/imagesRoutes/getFavorateImages");
-let editNotifications = require("./routes/userRoutes/editNotifications");
+let searchImage = require("./routes/imagesRoutes/searchImage");
+let follow = require("./routes/userRoutes/follow");
+let unfollow = require("./routes/userRoutes/unfollow");
+let getCreatorInfo = require("./routes/userRoutes/getCreatorInfo");
+let deletePost = require("./routes/imagesRoutes/deletePost");
 
 app.use(express.urlencoded({ limit: "10mb" }));
 app.use(express.json({ limit: "10mb" }));
@@ -47,7 +51,11 @@ app.use("/", changePfp);
 app.use("/", authenticating);
 app.use("/", addToFavorate);
 app.use("/", getFavorateImages);
-app.use("/", editNotifications);
+app.use("/", searchImage);
+app.use("/", follow);
+app.use("/", unfollow);
+app.use("/", getCreatorInfo);
+app.use("/", deletePost);
 
 mongoose.connection.once("open", () => {
     app.listen(PORT, () => {

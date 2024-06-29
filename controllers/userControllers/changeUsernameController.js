@@ -1,3 +1,4 @@
+const Images = require("../../models/Images");
 let Users = require("../../models/Users");
 let jwt = require("jsonwebtoken");
 let createToken = (username) => {
@@ -20,6 +21,7 @@ let changeUsernameController = async (req, res) => {
                 res.json({ success: false, message: "Please enter a valid username !" });
             } else {
                 let user = await Users.findOneAndUpdate({ username }, { username: newUsername });
+                let images = await Images.updateMany({ "user.username": username }, { $set: { "user.username": newUsername } });
                 console.log("Username has been updated succesfully");
                 let token = createToken(newUsername);
                 res.cookie("AUTH", token, {

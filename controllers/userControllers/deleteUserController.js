@@ -1,9 +1,11 @@
+const Images = require("../../models/Images");
 let Users = require("../../models/Users");
 
 let deleteUserController = async (req, res) => {
     try {
         let { username } = res.locals.user;
         let deleteUser = await Users.findOneAndDelete({ username });
+        let deleteImages = await Images.deleteMany({ "user.username": username });
         console.log("Account has been deleted");
         res.json({ success: true });
     } catch (error) {
