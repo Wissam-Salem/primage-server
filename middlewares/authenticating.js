@@ -16,10 +16,11 @@ let authenticating = async (req, res) => {
                     console.log(username);
                     let user = await Users.findOne({ username });
                     let findImages = await Images.find({ "user.username": username });
+                    let images = await Images.find();
                     if (user) {
                         let sendUser = { username, pfp: user.pfp, bio: user.bio, posts: findImages, followings: user.followings };
                         console.log("User authenticated");
-                        res.json({ success: true, sendUser, message: "User authenticated" });
+                        res.json({ success: true, sendUser, images, message: "User authenticated" });
                     } else {
                         console.log("User is not found !");
                         res.cookie("AUTH", "", {

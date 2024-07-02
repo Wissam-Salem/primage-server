@@ -6,7 +6,7 @@ let editBioController = async (req, res) => {
         let { username } = res.locals.user;
         let user = await Users.findOneAndUpdate({ username }, { bio: newBio });
         console.log("User bio has been edited");
-        res.json({ success: true, message: "User bio has beed edited" });
+        res.json({ success: true, message: "Bio has beed updated" });
     } catch (error) {
         console.log(error);
         res.json({ success: false, message: "Error! please try again" });

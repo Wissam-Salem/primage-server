@@ -8,7 +8,7 @@ let changePfpController = async (req, res) => {
         let user = await Users.findOneAndUpdate({ username }, { pfp: newPfp });
         let images = await Images.updateMany({ "user.username": username }, { $set: { "user.pfp": newPfp } });
         console.log("User pfp has been updated");
-        res.json({ success: true, message: "User pfp has beed edited" });
+        res.json({ success: true, message: "Profile picture has beed updated" });
     } catch (error) {
         console.log(error);
         res.json({ success: false, message: "Error! please try again" });

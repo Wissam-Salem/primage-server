@@ -27,7 +27,7 @@ let changeUsernameController = async (req, res) => {
                 res.cookie("AUTH", token, {
                     maxAge: 500000
                 });
-                res.json({ success: true, message: "Username has been updated succesfully" });
+                res.json({ success: true, message: "Username has been updated" });
             }
 
         }
